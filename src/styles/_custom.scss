@@ -1,0 +1,177 @@
+@import "variable";
+
+//Button Custom
+.btn {
+  background-color: $main-color;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: $white-color;
+  border: none;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  img {
+    margin-right: 5px;
+  }
+}
+
+.btn--reset {
+  background: #223354;
+  height: 40px;
+  width: 100%;
+}
+
+.btn--cancel,
+.btn--confirm {
+  border-radius: 15px;
+}
+
+.btn--cancel {
+  background: linear-gradient(90deg, #cccccc 0%, #e7e7e7 100%);
+  color: #888888;
+}
+
+.btn--cancel:hover,
+.btn--cancel:focus {
+  background: linear-gradient(90deg, #cccccc 50%, #e7e7e7 100%) !important;
+  color: #888888 !important;
+}
+
+.btn--confirm {
+  background: linear-gradient(90deg, #e08d15 0%, #fea628 100%);
+}
+
+.btn--confirm:hover,
+.btn--confirm:focus {
+  background: linear-gradient(90deg, #e08d15 50%, #fea628 100%) !important;
+}
+
+.btn--reset:hover,
+.btn--reset:focus {
+  background: #152035 !important;
+  color: $white-color;
+  border: none;
+}
+
+.btn--deny {
+  background: linear-gradient(90deg, #ea5c5c 0%, #d68b8b 100%);
+  color: white;
+  &:hover,
+  &:focus {
+    background: linear-gradient(90deg, #ea5c5c 0%, #d68b8b 100%) !important;
+    box-shadow: 0 0.5em 0.5em -0.4em $main-color;
+    transform: translateY(-0.25em);
+  }
+}
+
+.btn--accept {
+  background: linear-gradient(90deg, #4c8e43 0%, #62bd79 100%);
+  color: white;
+  &:hover,
+  &:focus {
+    background: linear-gradient(90deg, #4c8e43 0%, #62bd79 100%) !important;
+    box-shadow: 0 0.5em 0.5em -0.4em $main-color;
+    transform: translateY(-0.25em);
+  }
+}
+
+.btnForm {
+  width: 100%;
+}
+
+.btn:hover,
+.btn:focus {
+  background: $main-color-hover;
+  color: $white-color;
+  border: none;
+}
+
+.btn--submit {
+  width: 100%;
+  height: 45px;
+}
+
+//Input Custom
+.inputCustom {
+  background-color: $white-color;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  font-size: 14px;
+  padding: 7px 9px;
+  input {
+    color: #3b3b3b;
+    font-weight: 400;
+    font-size: inherit;
+    line-height: 20px;
+    &::placeholder {
+      color: #c4c4c4;
+    }
+  }
+  .ant-input-prefix {
+    margin-right: 10px;
+  }
+  &:hover {
+    border-color: $main-color !important;
+  }
+  .ant-input-number-input-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    input {
+      padding: 0;
+    }
+  }
+  &:focus {
+    border-color: $main-color !important;
+    box-shadow: 0px 0px 0px 2px rgba(254, 166, 40, 0.2);
+  }
+  .ant-picker-focused {
+    border-color: $main-color !important;
+    box-shadow: 0px 0px 0px 2px rgba(254, 166, 40, 0.2) !important;
+  }
+  .ant-picker-suffix {
+    margin-left: 0;
+  }
+}
+
+//Switch
+.switch-custom {
+  .ant-switch-checked {
+    background-color: #368797;
+  }
+}
+
+//Modal
+.modal-custom {
+  .ant-modal-content {
+    border-radius: 5px;
+    .ant-modal-header {
+      background-color: $main-color;
+      border-radius: 5px 5px 0 0;
+      .ant-modal-title {
+        color: white;
+      }
+    }
+    .ant-modal-body {
+      max-height: 75vh;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: $main-color-rgb;
+        border-radius: 20px;
+      }
+    }
+  }
+}

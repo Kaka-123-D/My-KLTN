@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #223354;
+  .icon {
+    margin-right: 5px;
+  }
+}
