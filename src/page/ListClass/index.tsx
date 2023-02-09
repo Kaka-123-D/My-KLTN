@@ -1,5 +1,5 @@
-const Dashboard = () => {
-  return <p>Hello from dashboard</p>;
-}
+const ListClass = () => {
+  return <p>Hello from ListClass</p>;
+};
 
-export default Dashboard;
+export default ListClass;

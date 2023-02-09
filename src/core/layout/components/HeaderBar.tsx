@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { images } from "../../assets";
 import styled from "styled-components";
 import routes from "routes/routes-base";
@@ -92,11 +91,10 @@ const NavItem = styled(({ isActive, ...props }) => (
 const HeaderBar = () => {
   const { hasRole, logout, userInfo } = useAuth();
   const { pathname } = useLocation();
-  const { t } = useTranslation();
 
   const showConfirmLogout = () => {
     Modal.confirm({
-      title: t("alert.areYouSureLogout"),
+      title: "Bạn có chắc chắn muốn đăng xuất?",
       icon: <ExclamationCircleOutlined />,
       onOk() {
         return logout().catch(() => console.log("Oops errors!"));
@@ -108,7 +106,7 @@ const HeaderBar = () => {
   return (
     <HeaderContainer>
       <Logo />
-      <BrandName>Recruit</BrandName>
+      <BrandName>MyProject</BrandName>
       {routes.map((route, index) => {
         if (route?.private && hasRole(route.roles)) {
           return (

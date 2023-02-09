@@ -14,14 +14,14 @@ const routes: any[] = [
     path: "/manager-users",
     name: "Quản lý users",
     element: ManagerUsers,
-    private: true,
+    private: false,
     // roles: [SUPER_ADMIN, ADMIN],
   },
   {
     path: "/",
     name: "Danh sách class",
     element: ListClass,
-    private: true,
+    private: false,
     // roles: [SUPER_ADMIN, ADMIN],
   },
   // {
