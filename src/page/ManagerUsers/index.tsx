@@ -1,6 +1,5 @@
 import { Button } from "antd";
 import { useQuery } from "react-query";
-import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { useState } from "react";
 
@@ -21,8 +20,6 @@ const defaultFilter: IFilter = {
 };
 
 export default function Account() {
-  const [t] = useTranslation();
-
   const {
     filter,
     handleFilterChange,
@@ -58,7 +55,7 @@ export default function Account() {
               setOpen(true);
             }}
           >
-            {t("btn.addAccount")}
+            Them
           </Button>
         </div>
       </div>
