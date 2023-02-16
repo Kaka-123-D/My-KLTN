@@ -12,8 +12,8 @@ type PrivateRouteProps = {
 const PrivateRoute = ({ children, roles }: PrivateRouteProps) => {
   const { hasRole } = useAuth();
 
-  if (!storage.getToken()) return <Navigate to="/login" replace />;
-  if (!hasRole(roles)) return <Navigate to="/not-found" replace />;
+  // if (!storage.getToken()) return <Navigate to="/login" replace />;
+  // if (!hasRole(roles)) return <Navigate to="/not-found" replace />;
   return <Layout>{children}</Layout>;
 };
 

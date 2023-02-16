@@ -5,7 +5,6 @@ import classNames from "classnames";
 import { forgotPassword } from "core/api/auth";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { useMutation } from "react-query";
 import * as yup from "yup";
 
@@ -18,7 +17,6 @@ interface IProps {
 }
 
 export default function ForgotPasswordModal({ open, onOk, onCancel }: IProps) {
-  const [t] = useTranslation();
   const {
     register,
     handleSubmit,
@@ -26,14 +24,14 @@ export default function ForgotPasswordModal({ open, onOk, onCancel }: IProps) {
     control,
     formState: { errors },
   } = useForm<{ email: string }>({
-    resolver: yupResolver(
-      yup.object({
-        email: yup
-          .string()
-          .email(t("validate.emailValid") as string)
-          .required(t("validate.emailRequired") as string),
-      })
-    ),
+    // resolver: yupResolver(
+    //   yup.object({
+    //     email: yup
+    //       .string()
+    //       .email(t("validate.emailValid") as string)
+    //       .required(t("validate.emailRequired") as string),
+    //   })
+    // ),
     mode: "onChange",
     defaultValues: {
       email: "",
@@ -44,11 +42,7 @@ export default function ForgotPasswordModal({ open, onOk, onCancel }: IProps) {
   const { mutate: postForgotPassword, isLoading: loadingPostForgotPassword } =
     useMutation((payload: any) => forgotPassword(payload), {
       onSuccess: () => {
-        setMes(
-          t("message.forgotPasswordSuccess", {
-            email: watch("email"),
-          }) as string
-        );
+        setMes("thanh cong");
       },
     });
 
@@ -58,7 +52,7 @@ export default function ForgotPasswordModal({ open, onOk, onCancel }: IProps) {
 
   return (
     <Modal
-      title={t("modal.forgotPasswordLabel")}
+      title={"title"}
       open={open}
       onOk={onOk}
       onCancel={onCancel}
@@ -72,7 +66,7 @@ export default function ForgotPasswordModal({ open, onOk, onCancel }: IProps) {
           render={({ field: { onChange, value } }) => (
             <>
               <TextField
-                label={t("form.emailLabel")}
+                label={"email"}
                 variant="outlined"
                 className={classNames("w-100", {
                   "mt-10": !!mes,
@@ -90,7 +84,7 @@ export default function ForgotPasswordModal({ open, onOk, onCancel }: IProps) {
           className="btn btn--submit mt-20"
           disabled={loadingPostForgotPassword}
         >
-          {t("btn.send")}
+          {"ok"}
         </Button>
       </form>
     </Modal>

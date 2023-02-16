@@ -1,5 +1,4 @@
 import { CameraOutlined } from "@ant-design/icons";
-import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
 import styles from "./styles.module.scss";
@@ -16,8 +15,6 @@ export default function UploadImage({
   setCurrentAvatar,
   image,
 }: IProps) {
-  const [t] = useTranslation();
-
   useEffect(() => {
     const inputFile = document.querySelector("#input-file") as HTMLInputElement;
     const avatar = document.querySelector("#avatar") as HTMLImageElement;

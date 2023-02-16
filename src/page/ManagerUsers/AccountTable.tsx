@@ -1,6 +1,5 @@
 import { message, Switch, Table, Popover } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "react-query";
 import { EditOutlined, IdcardOutlined } from "@ant-design/icons";
 
@@ -25,7 +24,6 @@ export default function AccountTable({
   pageIndex,
   pageSize,
 }: IProps) {
-  const [t] = useTranslation();
   const queryClient = useQueryClient();
 
   const [open, setOpen] = useState(false);
@@ -38,7 +36,7 @@ export default function AccountTable({
       onSuccess: () => {
         queryClient.invalidateQueries("accounts");
         message.destroy();
-        message.success(t("message.updateStatusSuccess"));
+        message.success("thanh cong");
       },
     }
   );
@@ -54,7 +52,7 @@ export default function AccountTable({
 
   const columns: ColumnsType<IAccount> = [
     {
-      title: t("table.index"),
+      title: "stt",
       dataIndex: "index",
       key: "index",
       render: (value, record, index) => (
@@ -62,22 +60,22 @@ export default function AccountTable({
       ),
     },
     {
-      title: t("table.name"),
+      title: "ten",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: t("table.email"),
+      title: "mail",
       dataIndex: "email",
       key: "email",
     },
     {
-      title: t("table.phone"),
+      title: "sdt",
       dataIndex: "phone",
       key: "phone",
     },
     {
-      title: t("table.createdAt"),
+      title: "ngay tao",
       dataIndex: "createdAt",
       key: "createdAt",
       render: (value, record, index) => (
@@ -85,13 +83,13 @@ export default function AccountTable({
       ),
     },
     {
-      title: t("table.roleName"),
+      title: "role",
       dataIndex: "roleName",
       key: "roleName",
       render: (value, record, index) => <div>{record?.role?.name}</div>,
     },
     {
-      title: t("table.status"),
+      title: "status",
       render: (value, record, index) => {
         return (
           <div className="switch-custom">
@@ -110,7 +108,7 @@ export default function AccountTable({
       title: "",
       render: (value, record, index) => (
         <div className="d-flex">
-          <Popover content={t("popover.updateProfile")} placement="bottom">
+          <Popover content={"upload"} placement="bottom">
             <span
               className="icon-action mr-10"
               onClick={() => {
@@ -121,7 +119,7 @@ export default function AccountTable({
               <EditOutlined />
             </span>
           </Popover>
-          <Popover content={t("popover.changePassword")} placement="bottom">
+          <Popover content={"change pass"} placement="bottom">
             <span
               className="icon-action"
               onClick={() => {

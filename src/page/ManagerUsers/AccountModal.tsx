@@ -9,7 +9,6 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Controller, useForm } from "react-hook-form";
@@ -41,7 +40,6 @@ export default function AccountModal({
   type,
   data,
 }: IProps) {
-  const [t] = useTranslation();
   const queryClient = useQueryClient();
   const {
     register,
@@ -50,55 +48,55 @@ export default function AccountModal({
     control,
     formState: { errors },
   } = useForm<IAccountForm>({
-    resolver: yupResolver(
-      yup
-        .object({
-          email: yup
-            .string()
-            .email(t("validate.emailValid") as string)
-            .required(t("validate.emailRequired") as string),
-          password:
-            type === ActionType.CREATE
-              ? yup
-                  .string()
-                  .min(6, t("validate.passwordMin6") as string)
-                  .required(t("validate.passwordRequired") as string)
-              : yup.string(),
-          role: yup.string().required(t("validate.roleRequired") as string),
-          name: yup
-            .string()
-            .nullable()
-            .test(
-              "validateName",
-              t("validate.nameMin6") as string,
-              (value?: string | null) => {
-                if (!value) {
-                  return true;
-                }
-                if (value && value?.length < 6) {
-                  return false;
-                }
-                return true;
-              }
-            ),
-          phone: yup
-            .string()
-            .nullable()
-            .test(
-              "validatePhone",
-              t("validate.phoneInvalid") as string,
-              (value?: string | null) => {
-                if (!value) {
-                  return true;
-                }
-                return new RegExp(/^(84|0[3|5|7|8|9])+([0-9]{8})$/).test(
-                  value || ""
-                );
-              }
-            ),
-        })
-        .required()
-    ),
+    // resolver: yupResolver(
+    //   yup
+    //     .object({
+    //       email: yup
+    //         .string()
+    //         .email(t("validate.emailValid") as string)
+    //         .required(t("validate.emailRequired") as string),
+    //       password:
+    //         type === ActionType.CREATE
+    //           ? yup
+    //               .string()
+    //               .min(6, t("validate.passwordMin6") as string)
+    //               .required(t("validate.passwordRequired") as string)
+    //           : yup.string(),
+    //       role: yup.string().required(t("validate.roleRequired") as string),
+    //       name: yup
+    //         .string()
+    //         .nullable()
+    //         .test(
+    //           "validateName",
+    //           t("validate.nameMin6") as string,
+    //           (value?: string | null) => {
+    //             if (!value) {
+    //               return true;
+    //             }
+    //             if (value && value?.length < 6) {
+    //               return false;
+    //             }
+    //             return true;
+    //           }
+    //         ),
+    //       phone: yup
+    //         .string()
+    //         .nullable()
+    //         .test(
+    //           "validatePhone",
+    //           t("validate.phoneInvalid") as string,
+    //           (value?: string | null) => {
+    //             if (!value) {
+    //               return true;
+    //             }
+    //             return new RegExp(/^(84|0[3|5|7|8|9])+([0-9]{8})$/).test(
+    //               value || ""
+    //             );
+    //           }
+    //         ),
+    //     })
+    //     .required()
+    // ),
     mode: "onChange",
     defaultValues:
       type === ActionType.CREATE
@@ -126,7 +124,7 @@ export default function AccountModal({
     {
       onSuccess: () => {
         queryClient.invalidateQueries("accounts");
-        message.success(t("message.createAccountSuccess"));
+        message.success("thanh cong");
         onOk();
       },
     }
@@ -136,7 +134,7 @@ export default function AccountModal({
     {
       onSuccess: () => {
         queryClient.invalidateQueries("accounts");
-        message.success(t("message.updateAccountSuccess"));
+        message.success("thanh cong");
         onOk();
       },
     }
@@ -195,8 +193,8 @@ export default function AccountModal({
       <Modal
         title={
           type === ActionType.CREATE
-            ? t("modal.addAccountLabel")
-            : t("modal.editAccountLabel")
+            ? "create"
+            : "edit"
         }
         open={open}
         onOk={onOk}
@@ -219,7 +217,7 @@ export default function AccountModal({
               render={({ field: { onChange, value } }) => (
                 <>
                   <TextField
-                    label={t("form.nameLabel")}
+                    label={"ten"}
                     className="w-100"
                     variant="outlined"
                     onChange={onChange}
@@ -238,7 +236,7 @@ export default function AccountModal({
               render={({ field: { onChange, value } }) => (
                 <>
                   <TextField
-                    label={t("form.emailLabel")}
+                    label={"email"}
                     className={classNames("f-1", {
                       "mr-10": type === ActionType.CREATE,
                     })}
@@ -265,7 +263,7 @@ export default function AccountModal({
                       htmlFor="outlined-adornment-password"
                       error={!!errors?.password?.message}
                     >
-                      {t("form.passwordLabel")}
+                      {"pass"}
                     </InputLabel>
                     <OutlinedInput
                       id="outlined-adornment-password"
@@ -285,7 +283,7 @@ export default function AccountModal({
                           </IconButton>
                         </InputAdornment>
                       }
-                      label={t("form.passwordLabel")}
+                      label={"pass"}
                     />
                     {!!errors?.password?.message && (
                       <FormHelperText error>
@@ -304,7 +302,7 @@ export default function AccountModal({
               render={({ field: { onChange, value } }) => (
                 <>
                   <TextField
-                    label={t("form.phoneLabel")}
+                    label={"phone"}
                     className={classNames("f-1", {
                       "mr-10": data?.role?.name !== RoleType.SUPER_ADMIN,
                     })}
@@ -324,7 +322,7 @@ export default function AccountModal({
                 render={({ field: { onChange, value } }) => (
                   <TextField
                     select
-                    label={t("form.roleLabel")}
+                    label={"role"}
                     value={value}
                     className="f-1"
                     onChange={onChange}
@@ -351,8 +349,8 @@ export default function AccountModal({
             }
           >
             {type === ActionType.CREATE
-              ? t("btn.addAccount")
-              : t("btn.editAccount")}
+              ? "add"
+              : "edit"}
           </Button>
         </form>
       </Modal>

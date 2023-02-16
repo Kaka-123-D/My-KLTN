@@ -14,7 +14,7 @@ const routes: any[] = [
     path: "/manager-users",
     name: "Quản lý users",
     element: ManagerUsers,
-    private: false,
+    private: true,
     // roles: [SUPER_ADMIN, ADMIN],
   },
   {

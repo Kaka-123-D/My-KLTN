@@ -1,6 +1,5 @@
 import { Button, message, Modal } from "antd";
 import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "react-query";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -31,7 +30,6 @@ export default function ChangePasswordModal({
   onCancel,
   data,
 }: IProps) {
-  const [t] = useTranslation();
   const queryClient = useQueryClient();
   const {
     handleSubmit,
@@ -44,23 +42,23 @@ export default function ChangePasswordModal({
       newPassword: "",
       confirmNewPassword: "",
     },
-    resolver: yupResolver(
-      yup.object({
-        newPassword: yup
-          .string()
-          .min(6, t("validate.passwordMin6") as string)
-          .required(t("validate.passwordRequired") as string),
-        confirmNewPassword: yup
-          .string()
-          .test(
-            "validateConfirmPassword",
-            t("validate.passwordNotMatch") as string,
-            (value?: any) => {
-              return (watch("newPassword") as string) === value;
-            }
-          ),
-      })
-    ),
+    // resolver: yupResolver(
+    //   yup.object({
+    //     newPassword: yup
+    //       .string()
+    //       .min(6, t("validate.passwordMin6") as string)
+    //       .required(t("validate.passwordRequired") as string),
+    //     confirmNewPassword: yup
+    //       .string()
+    //       .test(
+    //         "validateConfirmPassword",
+    //         t("validate.passwordNotMatch") as string,
+    //         (value?: any) => {
+    //           return (watch("newPassword") as string) === value;
+    //         }
+    //       ),
+    //   })
+    // ),
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -69,7 +67,7 @@ export default function ChangePasswordModal({
     {
       onSuccess: () => {
         queryClient.invalidateQueries("accounts");
-        message.success(t("message.changePasswordSuccess"));
+        message.success("thanh cong");
         onOk();
       },
     }
@@ -94,7 +92,7 @@ export default function ChangePasswordModal({
 
   return (
     <Modal
-      title={t("modal.changePasswordLabel")}
+      title={"title"}
       open={open}
       onCancel={onCancel}
       footer={null}
@@ -113,7 +111,7 @@ export default function ChangePasswordModal({
                 htmlFor="outlined-adornment-password"
                 error={!!errors?.newPassword?.message}
               >
-                {t("form.newPasswordLabel")}
+                {"label"}
               </InputLabel>
               <OutlinedInput
                 type={showPassword ? "text" : "password"}
@@ -132,7 +130,7 @@ export default function ChangePasswordModal({
                     </IconButton>
                   </InputAdornment>
                 }
-                label={t("form.newPasswordLabel")}
+                label={"new pass"}
               />
               {!!errors?.newPassword?.message && (
                 <FormHelperText error>
@@ -155,7 +153,7 @@ export default function ChangePasswordModal({
                 htmlFor="outlined-adornment-password"
                 error={!!errors?.confirmNewPassword?.message}
               >
-                {t("form.confirmNewPasswordLabel")}
+                {"confirm"}
               </InputLabel>
               <OutlinedInput
                 type={showPassword ? "text" : "password"}
@@ -174,7 +172,7 @@ export default function ChangePasswordModal({
                     </IconButton>
                   </InputAdornment>
                 }
-                label={t("form.confirmNewPasswordLabel")}
+                label={"confirm new pass"}
               />
               {!!errors?.confirmNewPassword?.message && (
                 <FormHelperText error>
@@ -189,7 +187,7 @@ export default function ChangePasswordModal({
           className="btn btn--submit mt-20"
           disabled={false}
         >
-          {t("btn.changePassword")}
+          {"ok"}
         </Button>
       </form>
     </Modal>
