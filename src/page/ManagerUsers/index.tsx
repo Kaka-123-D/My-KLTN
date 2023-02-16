@@ -46,18 +46,16 @@ export default function Account() {
 
   return (
     <div className="page-container">
-      <div className="page-sub-header page-sub-header--tab">
-        <div className="sub-header-btn">
-          <Button
-            className="btn"
-            icon={<img src={images.addIcon} alt="" />}
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            Them
-          </Button>
-        </div>
+      <div className="sub-header-btn">
+        <Button
+          className="btn"
+          icon={<img src={images.addIcon} alt="" />}
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Them
+        </Button>
       </div>
       <div className="table-wrapper">
         <div className="table-container">

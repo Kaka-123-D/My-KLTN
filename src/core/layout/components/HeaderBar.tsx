@@ -4,20 +4,24 @@ import styled from "styled-components";
 import routes from "routes/routes-base";
 import { useAuth } from "auth/contexts/AuthProvider";
 
-import { Avatar } from "@mui/material";
+import { Avatar, TextField } from "@mui/material";
 import { Modal } from "antd";
 
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import CustomAutocomplete from "core/components/ReactHookForm/Autocomplete";
+import { useForm } from "react-hook-form";
+import styles from "./styles.module.scss";
 
 const HeaderContainer = styled.div`
-  height: 60px;
+  height: 74px;
   background-color: #222433;
   display: flex;
   position: relative;
+  align-items: center;
 `;
 
 const Logo = styled.div`
-  background-image: url(${images.logoRecruit});
+  background-image: url(${images.logo});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -34,7 +38,7 @@ const BrandName = styled.span`
   cursor: pointer;
   align-items: center;
   display: flex;
-  padding-right: 20px;
+  padding-right: 60px;
 `;
 
 const Logout = styled.div`
@@ -59,38 +63,14 @@ const OtherInfo = styled.div`
   height: 99%;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
-
-const NavItem = styled(({ isActive, ...props }) => (
-  <StyledLink to={props.path}>
-    <div {...props}>{props.name}</div>
-  </StyledLink>
-))`
-  color: white;
-  height: 100%;
-  background-color: ${(props) =>
-    props.isActive ? "hsla(0, 0%, 100%, 0.1)" : "#222433"};
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 600;
-  padding-right: 15px;
-  padding-left: 15px;
-  border-left: 1px solid hsla(0, 0%, 100%, 0.1);
-  border-right: 1px solid hsla(0, 0%, 100%, 0.1);
-  border-bottom: ${(props) =>
-    props.isActive ? "3px solid #368797" : "3px solid transparent"};
-  &:hover {
-    background-color: hsla(0, 0%, 100%, 0.1);
-    border-bottom: 3px solid #368797;
-  }
-`;
-
 const HeaderBar = () => {
-  const { hasRole, logout, userInfo } = useAuth();
+  const { hasRole, logout, userInfo, listClass } = useAuth();
   const { pathname } = useLocation();
+
+  const {
+    control,
+    formState: { errors },
+  } = useForm();
 
   const showConfirmLogout = () => {
     Modal.confirm({
@@ -107,18 +87,19 @@ const HeaderBar = () => {
     <HeaderContainer>
       <Logo />
       <BrandName>MyProject</BrandName>
-      {routes.map((route, index) => {
-        if (route?.private && hasRole(route.roles)) {
-          return (
-            <NavItem
-              key={index}
-              path={route.path}
-              name={route.name}
-              isActive={"/" + pathname.split("/")[1] === route.path}
-            />
-          );
-        }
-      })}
+      <div className="py-2">
+        <CustomAutocomplete
+          name="keyword"
+          control={control}
+          errors={errors}
+          listOptions={listClass}
+          placeholder="Tìm kiếm class"
+          getOptionLabel={(option) => option.name}
+          customRenderOption={(option) => <>{option.name}</>}
+          onChange={(option) => alert(option.name)}
+          className={styles.searchBar}
+        />
+      </div>
       <OtherInfo>
         <Avatar src={userInfo?.avatar} />
         <Logout onClick={() => showConfirmLogout()} />

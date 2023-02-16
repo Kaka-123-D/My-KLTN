@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 import { useLogout } from "../hooks/useLogout";
 import { useUserInfo } from "../hooks/useUserInfo";
@@ -9,6 +9,7 @@ interface AuthContextInterface {
   logout: () => Promise<any>;
   isLoggingIn: boolean;
   userInfo?: any;
+  listClass: any;
 }
 
 export const AuthContext = createContext({} as AuthContextInterface);
@@ -21,6 +22,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const { isLoggingIn, login } = useLogin();
   const { logout } = useLogout();
   const { data: userInfo } = useUserInfo();
+  const [listClass] = useState([
+    { name: "class 1", count: 5 },
+    { name: "class 2", count: 5 },
+    { name: "class 3", count: 5 },
+    { name: "class 4", count: 5 },
+    { name: "class 5", count: 5 },
+  ]);
 
   const hasRole = (roles?: number[]) => {
     if (!roles || roles.length === 0 || !userInfo) {
@@ -42,6 +50,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         login: handleLogin,
         logout: handleLogout,
         userInfo,
+        listClass,
       }}
     >
       {children}

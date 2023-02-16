@@ -1,6 +1,6 @@
 import { Controller } from "react-hook-form";
 
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, InputAdornment, TextField } from "@mui/material";
 
 interface IProps {
   name: string;
@@ -14,6 +14,8 @@ interface IProps {
   customRenderOption: (option: any) => React.ReactElement;
   onChange: (option: any) => void;
   defaultValue?: any;
+  className?: string;
+  placeholder?: string;
 }
 
 const CustomAutocomplete = (props: IProps) => {
@@ -29,6 +31,8 @@ const CustomAutocomplete = (props: IProps) => {
     onChange,
     clearErrors,
     defaultValue,
+    className = "",
+    placeholder,
   } = props;
   return (
     <Controller
@@ -51,9 +55,18 @@ const CustomAutocomplete = (props: IProps) => {
               {...params}
               label={label}
               required={required}
+              placeholder={placeholder}
               error={!!errors?.[`${name}`]?.message}
               helperText={errors?.[`${name}`]?.message}
-              className="w-100"
+              className={className}
+              InputProps={{
+                ...params.InputProps,
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <span>icon</span>
+                  </InputAdornment>
+                ),
+              }}
             />
           )}
         />
