@@ -3,3 +3,12 @@
   width: 40vw !important;
   border-radius: 20px;
 }
+
+.sidebar {
+  :global {
+    .ant-layout-sider {
+      height: 100%;
+      background-color: #222433;
+    }
+  }
+}

@@ -7,6 +7,11 @@ const ContainerPage = styled.div`
   height: 100vh;
 `;
 
+const BodyPage = styled.div`
+  display: flex;
+  height: 100%;
+`;
+
 interface LayoutProps {
   children: React.ReactElement;
 }
@@ -15,8 +20,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <ContainerPage>
       <HeaderBar />
-      {/* <SideBar /> */}
-      {children}
+      <BodyPage>
+        <SideBar />
+        {children}
+      </BodyPage>
     </ContainerPage>
   );
 };
