@@ -18,6 +18,9 @@ const HeaderContainer = styled.div`
   display: flex;
   position: relative;
   align-items: center;
+  box-shadow: 0px 5px 25px -5px rgba(254, 166, 40, 0.5);
+  -webkit-box-shadow: 0px 5px 25px -5px rgba(254, 166, 40, 0.5);
+  z-index: 10;
 `;
 
 const Logo = styled.div`

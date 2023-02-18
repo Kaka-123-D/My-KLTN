@@ -45,7 +45,9 @@ const SideBar = () => {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <Button className="btn">Tạo Class +</Button>
+        <div className="w-100 d-flex-c-c mb-10">
+          <Button className="btn btn--create">Tạo Class +</Button>
+        </div>
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}

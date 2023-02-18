@@ -57,13 +57,24 @@
   border: none;
 }
 
+.btn--create {
+  background: linear-gradient(90deg, #fea628 0%, #f5b55b 100%);
+  color: white;
+  &:hover,
+  &:focus {
+  background: linear-gradient(90deg, #fea628 0%, #f5b55b 100%) !important;
+    box-shadow: 0 0.5em 0.5em -0.4em $main-color;
+    transform: translateY(-0.25em);
+  }
+}
+
 .btn--deny {
   background: linear-gradient(90deg, #ea5c5c 0%, #d68b8b 100%);
   color: white;
   &:hover,
   &:focus {
     background: linear-gradient(90deg, #ea5c5c 0%, #d68b8b 100%) !important;
-    box-shadow: 0 0.5em 0.5em -0.4em $main-color;
+    box-shadow: 0 0.5em 0.5em -0.4em #ea5c5c;
     transform: translateY(-0.25em);
   }
 }
@@ -74,7 +85,7 @@
   &:hover,
   &:focus {
     background: linear-gradient(90deg, #4c8e43 0%, #62bd79 100%) !important;
-    box-shadow: 0 0.5em 0.5em -0.4em $main-color;
+    box-shadow: 0 0.5em 0.5em -0.4em #4c8e43;
     transform: translateY(-0.25em);
   }
 }
