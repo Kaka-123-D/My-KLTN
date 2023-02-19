@@ -1,6 +1,7 @@
 import { Controller } from "react-hook-form";
 
 import { Autocomplete, InputAdornment, TextField } from "@mui/material";
+import { images } from "core/assets";
 
 interface IProps {
   name: string;
@@ -16,6 +17,7 @@ interface IProps {
   defaultValue?: any;
   className?: string;
   placeholder?: string;
+  isSearchBar?: boolean;
 }
 
 const CustomAutocomplete = (props: IProps) => {
@@ -33,6 +35,7 @@ const CustomAutocomplete = (props: IProps) => {
     defaultValue,
     className = "",
     placeholder,
+    isSearchBar = false,
   } = props;
   return (
     <Controller
@@ -63,7 +66,7 @@ const CustomAutocomplete = (props: IProps) => {
                 ...params.InputProps,
                 startAdornment: (
                   <InputAdornment position="start">
-                    <span>icon</span>
+                    {isSearchBar && <img src={images.searchIcon} />}
                   </InputAdornment>
                 ),
               }}

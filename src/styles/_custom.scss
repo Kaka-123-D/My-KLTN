@@ -62,9 +62,12 @@
   color: white;
   &:hover,
   &:focus {
-  background: linear-gradient(90deg, #fea628 0%, #f5b55b 100%) !important;
+    background: linear-gradient(90deg, #fea628 0%, #f5b55b 100%) !important;
     box-shadow: 0 0.5em 0.5em -0.4em $main-color;
     transform: translateY(-0.25em);
+  }
+  &:active {
+    transform: translateY(0);
   }
 }
 
@@ -77,6 +80,9 @@
     box-shadow: 0 0.5em 0.5em -0.4em #ea5c5c;
     transform: translateY(-0.25em);
   }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .btn--accept {
@@ -87,6 +93,9 @@
     background: linear-gradient(90deg, #4c8e43 0%, #62bd79 100%) !important;
     box-shadow: 0 0.5em 0.5em -0.4em #4c8e43;
     transform: translateY(-0.25em);
+  }
+  &:active {
+    transform: translateY(0);
   }
 }
 
@@ -163,8 +172,14 @@
 .modal-custom {
   .ant-modal-content {
     border-radius: 5px;
+    .anticon {
+      color: white;
+      :hover {
+        color: $main-color;
+      }
+    }
     .ant-modal-header {
-      background-color: $main-color;
+      background-color: $neutral-header-color;
       border-radius: 5px 5px 0 0;
       .ant-modal-title {
         color: white;

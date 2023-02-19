@@ -12,13 +12,10 @@ import {
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Controller, useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import classNames from "classnames";
 import configs from "core/config";
 
-import { getListRole } from "core/api/common";
 import { IRole, IAccountForm, IAccount } from "core/constants/interfaces";
 import { createAccount, updateAccount } from "core/api/account";
 import { ActionType, RoleType } from "core/constants/enums";
@@ -118,7 +115,7 @@ export default function AccountModal({
   const [showPassword, setShowPassword] = useState(false);
   const [currentAvatar, setCurrentAvatar] = useState<File | null>();
 
-  const { data: listRoleCommon } = useQuery("listRoleCommon", getListRole);
+  const listRoleCommon = ["ADMIN", "USER"];
   const { mutate: postAccount, isLoading: loadingPostAccount } = useMutation(
     (payload: any) => createAccount(payload),
     {

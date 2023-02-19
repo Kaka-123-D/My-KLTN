@@ -1,7 +1,5 @@
-import { Button } from "antd";
-
 const ListClass = () => {
-  return <Button className="btn btn--accept">Tạo Class +</Button>;
+  return <p>List class</p>;
 };
 
 export default ListClass;

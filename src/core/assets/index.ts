@@ -9,6 +9,9 @@ import arrowBack from "./images/arrow-back.svg";
 import infoLabelIcon from "./images/info-label-icon.svg";
 import editIcon from "./images/edit-icon.svg";
 import iconCheckedCircle from "./images/iconCheckedCircle.svg";
+import iconListClass from "./images/icon-list-class.svg";
+import iconListUser from "./images/icon-list-user.svg";
+import trash from "./images/trash.svg";
 
 export const images = {
   logo,
@@ -22,12 +25,15 @@ export const images = {
   infoLabelIcon,
   editIcon,
   iconCheckedCircle,
+  iconListClass,
+  iconListUser,
+  trash,
 };
 
 export const colors = {
-  mainColor: "rgb(54, 135, 151)",
-  mainColorRGB: "rgb(54, 135, 151, 0.5)",
-  mainColorHover: "rgb(54, 135, 151,0.8)",
+  mainColor: "#fea628",
+  mainColorRGB: "#fea62850",
+  mainColorHover: "#fea62880",
   neutralHeaderColor: "#222433",
   textHover: "rgba(222, 20, 29, 0.5)",
   processingColor: "#0057ff",

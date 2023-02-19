@@ -1,5 +1,3 @@
-import { useTranslation } from "react-i18next";
-
 import { Button, Grid } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
@@ -12,7 +10,11 @@ const buttonSubmitSX = {
   borderRadius: "10px",
   "&:hover": {
     borderColor: `${colors.mainColor}`,
-    backgroundColor: `${colors.mainColorHover}`,
+    backgroundColor: `${colors.mainColor}`,
+    transform: "translateY(-0.1em)",
+  },
+  "&:active": {
+    transform: "translateY(0)",
   },
 };
 
@@ -20,10 +22,15 @@ const buttonCancelSx = {
   border: `1px solid ${colors.mainColor}`,
   height: "43px",
   color: `${colors.mainColor}`,
+  backgroundColor: "white",
   borderRadius: "10px",
   "&:hover": {
-    backgroundColor: `${colors.mainColorHover}`,
-    color: "white",
+    border: `1px solid ${colors.mainColor}`,
+    backgroundColor: "white",
+    transform: "translateY(-0.1em)",
+  },
+  "&:active": {
+    transform: "translateY(0)",
   },
 };
 
@@ -36,18 +43,17 @@ interface IProps {
 
 const FooterModalSubmit = (props: IProps) => {
   const { onCancel, onOk, isLoadingOnOk, labelOnOk } = props;
-  const { t } = useTranslation();
   return (
     <Grid container columnSpacing={2}>
       {!!onCancel && (
         <Grid item xs={6}>
           <Button
-            variant="outlined"
+            variant="contained"
             onClick={onCancel}
             className="w-100"
             sx={buttonCancelSx}
           >
-            {t("common.cancel")}
+            Cancel
           </Button>
         </Grid>
       )}
@@ -59,7 +65,7 @@ const FooterModalSubmit = (props: IProps) => {
           className="w-100"
           sx={buttonSubmitSX}
         >
-          {labelOnOk ?? t("common.ok")}
+          {labelOnOk ?? "Ok"}
         </LoadingButton>
       </Grid>
     </Grid>

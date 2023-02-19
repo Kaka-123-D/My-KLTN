@@ -18,7 +18,7 @@ const routes: any[] = [
     // roles: [SUPER_ADMIN, ADMIN],
   },
   {
-    path: "/",
+    path: "/list-class",
     name: "Danh sách class",
     element: ListClass,
     private: true,

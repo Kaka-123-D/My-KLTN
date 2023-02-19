@@ -41,7 +41,7 @@ const BrandName = styled.span`
   cursor: pointer;
   align-items: center;
   display: flex;
-  padding-right: 60px;
+  padding-right: 80px;
 `;
 
 const Logout = styled.div`
@@ -101,6 +101,7 @@ const HeaderBar = () => {
           customRenderOption={(option) => <>{option.name}</>}
           onChange={(option) => alert(option.name)}
           className={styles.searchBar}
+          isSearchBar
         />
       </div>
       <OtherInfo>
