@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import styles from "./styles.module.scss";
 
 const HeaderContainer = styled.div`
-  height: 74px;
+  height: 70px;
   background-color: #222433;
   display: flex;
   position: relative;
@@ -41,7 +41,7 @@ const BrandName = styled.span`
   cursor: pointer;
   align-items: center;
   display: flex;
-  padding-right: 80px;
+  padding-right: 100px;
 `;
 
 const Logout = styled.div`
@@ -90,7 +90,7 @@ const HeaderBar = () => {
     <HeaderContainer>
       <Logo />
       <BrandName>MyProject</BrandName>
-      <div className="py-2">
+      <div>
         <CustomAutocomplete
           name="keyword"
           control={control}

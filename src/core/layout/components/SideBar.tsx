@@ -10,7 +10,9 @@ import { useForm } from "react-hook-form";
 import { apiCreateClass } from "core/api/common";
 import { GET_LIST_CLASS } from "core/constants/queryName";
 import { images } from "core/assets";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import CustomTextField from "core/components/ReactHookForm/TextField";
+import { Grid } from "@mui/material";
 
 const { Sider } = Layout;
 
@@ -35,12 +37,16 @@ const items: MenuItem[] = [
 ];
 
 const SideBar = () => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { pathname } = useLocation();
-  console.log("🚀 ~ file: SideBar.tsx:40 ~ SideBar ~ location", location);
   const [isOpenModalCreateClass, setOpenModalCreateClass] = useState(false);
 
-  const { handleSubmit } = useForm();
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm();
 
   const { mutate: createClass, isLoading: isLoadingCreateClass } = useMutation(
     (payload: any) => apiCreateClass(payload),
@@ -69,6 +75,7 @@ const SideBar = () => {
           defaultSelectedKeys={[pathname.split("/")[1]]}
           mode="inline"
           items={items}
+          onClick={({ item, key }) => navigate("/" + key)}
         />
       </Sider>
       <Modal
@@ -84,7 +91,28 @@ const SideBar = () => {
             isLoadingOnOk={isLoadingCreateClass}
           />
         }
-      />
+      >
+        <Grid container gap={2}>
+          <Grid item xs={12}>
+            <CustomTextField
+              name="title"
+              control={control}
+              label="Tên Class"
+              errors={errors}
+              required
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <CustomTextField
+              name="description"
+              control={control}
+              label="Mô tả"
+              errors={errors}
+              rows={8}
+            />
+          </Grid>
+        </Grid>
+      </Modal>
     </div>
   );
 };
