@@ -10,6 +10,12 @@ const ContainerPage = styled.div`
 const BodyPage = styled.div`
   display: flex;
   height: 100%;
+  width: 100%;
+`;
+const MainContent = styled.div`
+  padding: 20px;
+  width: 100%;
+  height: 100%;
 `;
 
 interface LayoutProps {
@@ -22,7 +28,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <HeaderBar />
       <BodyPage>
         <SideBar />
-        {children}
+        <MainContent>{children}</MainContent>
       </BodyPage>
     </ContainerPage>
   );
