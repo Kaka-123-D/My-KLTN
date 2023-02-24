@@ -35,8 +35,6 @@ export interface IAccount {
 export interface IRole {
   id: number;
   name: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface IAccountForm {

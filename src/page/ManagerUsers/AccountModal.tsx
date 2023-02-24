@@ -115,7 +115,10 @@ export default function AccountModal({
   const [showPassword, setShowPassword] = useState(false);
   const [currentAvatar, setCurrentAvatar] = useState<File | null>();
 
-  const listRoleCommon = ["ADMIN", "USER"];
+  const listRoleCommon = [
+    { id: 1, name: "ADMIN" },
+    { id: 2, name: "USER" },
+  ];
   const { mutate: postAccount, isLoading: loadingPostAccount } = useMutation(
     (payload: any) => createAccount(payload),
     {
@@ -188,11 +191,7 @@ export default function AccountModal({
   return (
     <>
       <Modal
-        title={
-          type === ActionType.CREATE
-            ? "create"
-            : "edit"
-        }
+        title={type === ActionType.CREATE ? "create" : "edit"}
         open={open}
         onOk={onOk}
         onCancel={onCancel}
@@ -326,7 +325,7 @@ export default function AccountModal({
                     error={!!errors?.role?.message}
                     helperText={errors?.role?.message}
                   >
-                    {listRoleCommon?.data?.map((role: IRole) => (
+                    {listRoleCommon?.map((role: IRole) => (
                       <MenuItem key={role.id} value={role.id}>
                         {role.name}
                       </MenuItem>
@@ -345,9 +344,7 @@ export default function AccountModal({
                 : loadingPutAccount
             }
           >
-            {type === ActionType.CREATE
-              ? "add"
-              : "edit"}
+            {type === ActionType.CREATE ? "add" : "edit"}
           </Button>
         </form>
       </Modal>

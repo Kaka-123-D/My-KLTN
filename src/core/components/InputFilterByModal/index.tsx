@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Modal, Button } from "antd";
 import styled from "styled-components";
 import { colors } from "core/assets";
@@ -35,7 +34,6 @@ interface IProps {
 
 const InputFilterByModal = (props: IProps) => {
   const { placeholderInput, titleModal, listFilter, itemIdSelected, setItemIdSelected } = props;
-  const { t } = useTranslation();
   const [openModalFilter, setOpenModalFilter] = useState(false);
   const [itemIdSelectedTemp, setItemIdSelectedTemp] = useState(itemIdSelected);
 

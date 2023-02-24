@@ -51,7 +51,7 @@ const ListClass = () => {
   };
 
   return (
-    <div class>
+    <div>
       {isLoadingGetListClass && <Spin />}
       {!isLoadingGetListClass && listClassFake.length !== 0 && (
         <CarouselContainer list={convertArrayOfArray(listClassFake, 6)}>
